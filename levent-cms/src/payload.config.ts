@@ -54,8 +54,10 @@ export default buildConfig({
   db: usePostgres
     ? postgresAdapter({
         pool: {
-          connectionString: databaseUrl!,
+          connectionString: databaseUrl ?? '',
         },
+        // Vercel'de tablolar yoksa ilk istekte şemayı oluşturur. Tablolar oluştuktan sonra false yapıp migration kullanın.
+        push: isVercel,
       })
     : sqliteAdapter({
         client: {

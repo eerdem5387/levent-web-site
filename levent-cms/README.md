@@ -64,10 +64,9 @@ vercel --prod
 
 İlk deploy sonrası **https://proje-adin.vercel.app/admin** ile giriş yapıp kullanıcı oluşturun.
 
-### Özet davranış
+### Neon’da tablolar yoksa (Failed query: select count from "posts")
 
-- **Yerel**: `DATABASE_URL` yok → SQLite (`file:./payload.db`). `BLOB_READ_WRITE_TOKEN` yok → dosyalar `public/uploads/media/`.
-- **Vercel**: `DATABASE_URL` = Neon connection string → PostgreSQL. `BLOB_READ_WRITE_TOKEN` = Vercel’den → medya Vercel Blob’da.
+Neon veritabanı ilk kez kullanılıyorsa tablolar yoktur. Bu projede Vercel’de **push: true** kullanılıyor; ilk sayfa isteğinde Payload şemayı oluşturur. Site açıldıktan sonra isterseniz `src/payload.config.ts` içinde `push: false` yapıp migration kullanabilirsiniz (önce yerelde `DATABASE_URL=neon_url npm run payload migrate:create` ile migration oluşturup commit edin).
 
 ---
 
