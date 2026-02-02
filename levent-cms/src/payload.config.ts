@@ -1,7 +1,11 @@
 import path from 'path'
+import { createRequire } from 'module'
 import { fileURLToPath } from 'url'
-import sharp from 'sharp'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+
+const require = createRequire(import.meta.url)
+// Vercel serverless'ta sharp linux binary sorunu olabiliyor; sadece yerelde kullan
+const sharp = process.env.VERCEL === '1' ? undefined : require('sharp')
 import { sqliteAdapter } from '@payloadcms/db-sqlite'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
@@ -58,7 +62,7 @@ export default buildConfig({
           url: databaseUrl || 'file:./payload.db',
         },
       }),
-  sharp,
+  ...(sharp ? { sharp } : {}),
   plugins: [
     vercelBlobStorage({
       enabled: !!process.env.BLOB_READ_WRITE_TOKEN,
