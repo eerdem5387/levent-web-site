@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-type FooterLink = { label?: string; url?: string }
+type FooterLink = { label?: string | null; url?: string | null }
 type Props = {
   data: {
     copyright?: string | null

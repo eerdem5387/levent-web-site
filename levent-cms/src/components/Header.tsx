@@ -1,18 +1,21 @@
 import Link from 'next/link'
 
-type NavLink = { label?: string; url?: string }
+type NavLink = { label?: string | null; url?: string | null }
 type Props = {
   data: {
-    logo?: { url?: string } | number | null
+    logo?: { url?: string | null } | number | null
     phone?: string | null
     navLinks?: NavLink[] | null
   } | null
 }
 
-type LogoType = { url?: string } | number | null | undefined
+type LogoType = { url?: string | null } | number | null | undefined
 function getLogoUrl(logo: LogoType): string | null {
   if (!logo) return null
-  if (typeof logo === 'object' && logo !== null && 'url' in logo) return (logo as { url?: string }).url ?? null
+  if (typeof logo === 'object' && logo !== null && 'url' in logo) {
+    const u = (logo as { url?: string | null }).url
+    return u ?? null
+  }
   return null
 }
 

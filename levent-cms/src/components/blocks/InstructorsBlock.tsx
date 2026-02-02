@@ -17,7 +17,7 @@ type Instructor = {
   name?: string | null
   title?: string | null
   category?: string | null
-  image?: { url?: string } | number | null
+  image?: { url?: string | null } | number | null
   order?: number | null
 }
 
@@ -26,9 +26,9 @@ type Props = {
   instructors: Instructor[]
 }
 
-function getMediaUrl(img: { url?: string } | number | null): string | null {
+function getMediaUrl(img: { url?: string | null } | number | null): string | null {
   if (!img || typeof img !== 'object' || !('url' in img)) return null
-  return (img as { url?: string }).url ?? null
+  return (img as { url?: string | null }).url ?? null
 }
 
 export function InstructorsBlock({ heading, instructors }: Props) {

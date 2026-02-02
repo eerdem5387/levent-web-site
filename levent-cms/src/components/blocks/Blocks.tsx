@@ -16,7 +16,7 @@ export type Block =
       subheading?: string
       ctaText?: string
       ctaLink?: string
-      image?: { url?: string } | number | null
+      image?: { url?: string | null } | number | null
     }
   | { blockType: 'richText'; id: string; content?: unknown }
   | { blockType: 'values'; id: string; heading?: string; items?: { title?: string; description?: string }[] }
@@ -46,7 +46,7 @@ type PostItem = {
   excerpt?: string | null
   category?: string | null
   publishedAt?: string | null
-  featuredImage?: { url?: string } | number | null
+  featuredImage?: { url?: string | null } | number | null
 }
 
 type InstructorItem = {
@@ -54,7 +54,7 @@ type InstructorItem = {
   name?: string | null
   title?: string | null
   category?: string | null
-  image?: { url?: string } | number | null
+  image?: { url?: string | null } | number | null
   order?: number | null
 }
 

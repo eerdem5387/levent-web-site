@@ -7,7 +7,7 @@ type Post = {
   excerpt?: string | null
   category?: string | null
   publishedAt?: string | null
-  featuredImage?: { url?: string } | number | null
+  featuredImage?: { url?: string | null } | number | null
 }
 
 type Props = {
@@ -19,7 +19,7 @@ type Props = {
 
 function getImageUrl(img: Post['featuredImage']): string | null {
   if (!img) return null
-  if (typeof img === 'object' && img !== null && 'url' in img) return (img as { url?: string }).url ?? null
+  if (typeof img === 'object' && img !== null && 'url' in img) return (img as { url?: string | null }).url ?? null
   return null
 }
 

@@ -2,9 +2,9 @@ import Link from 'next/link'
 
 const DEFAULT_HERO_IMAGE = '/uploads/2024/09/rana-banner-img-min.png'
 
-function getImageUrl(img: { url?: string } | number | null): string | null {
+function getImageUrl(img: { url?: string | null } | number | null): string | null {
   if (!img) return null
-  if (typeof img === 'object' && img !== null && 'url' in img) return (img as { url?: string }).url ?? null
+  if (typeof img === 'object' && img !== null && 'url' in img) return (img as { url?: string | null }).url ?? null
   return null
 }
 
@@ -13,7 +13,7 @@ type Props = {
   subheading?: string
   ctaText?: string
   ctaLink?: string
-  image?: { url?: string } | number | null
+  image?: { url?: string | null } | number | null
 }
 
 export function HeroBlock({ heading, subheading, ctaText, ctaLink, image }: Props) {
