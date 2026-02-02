@@ -1,6 +1,4 @@
-import type { GlobalConfig } from 'payload'
-
-const Header: GlobalConfig = {
+const Header = {
   slug: 'header',
   label: 'Üst Menü (Header)',
   access: {

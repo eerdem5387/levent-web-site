@@ -1,6 +1,4 @@
-import type { GlobalConfig } from 'payload'
-
-const Footer: GlobalConfig = {
+const Footer = {
   slug: 'footer',
   label: 'Alt Bilgi (Footer)',
   access: {

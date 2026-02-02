@@ -1,6 +1,4 @@
-import type { CollectionConfig } from 'payload'
-
-const Forms: CollectionConfig = {
+const Forms = {
   slug: 'forms',
   access: {
     read: () => true,

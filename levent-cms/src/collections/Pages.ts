@@ -1,7 +1,6 @@
-import type { CollectionConfig } from 'payload'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 
-const Pages: CollectionConfig = {
+const Pages = {
   slug: 'pages',
   access: {
     read: () => true,

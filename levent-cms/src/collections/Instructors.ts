@@ -1,5 +1,3 @@
-import type { CollectionConfig } from 'payload'
-
 const CATEGORIES = [
   { label: 'Rehberlik Uzmanları', value: 'rehberlik' },
   { label: 'Matematik', value: 'matematik' },
@@ -10,7 +8,7 @@ const CATEGORIES = [
   { label: 'Kültür Branşları', value: 'kultur' },
 ]
 
-const Instructors: CollectionConfig = {
+const Instructors = {
   slug: 'instructors',
   access: {
     read: () => true,

@@ -10,7 +10,7 @@
     "lint": "eslint",
     "payload": "payload",
     "migrate": "payload migrate",
-    "migrate:create": "NODE_OPTIONS='--import tsx/esm' payload migrate:create"
+    "migrate:create": "PAYLOAD_MIGRATING=true NODE_OPTIONS='--import tsx/esm' payload migrate:create"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "^3.74.0",
