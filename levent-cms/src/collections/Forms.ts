@@ -1,6 +1,6 @@
 import type { CollectionConfig } from 'payload'
 
-export const Forms: CollectionConfig = {
+const Forms: CollectionConfig = {
   slug: 'forms',
   access: {
     read: () => true,
@@ -69,3 +69,5 @@ export const Forms: CollectionConfig = {
     },
   ],
 }
+export { Forms }
+export default Forms

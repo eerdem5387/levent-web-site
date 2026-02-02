@@ -1,6 +1,6 @@
 import type { GlobalConfig } from 'payload'
 
-export const Footer: GlobalConfig = {
+const Footer: GlobalConfig = {
   slug: 'footer',
   label: 'Alt Bilgi (Footer)',
   access: {
@@ -23,3 +23,5 @@ export const Footer: GlobalConfig = {
     },
   ],
 }
+export { Footer }
+export default Footer

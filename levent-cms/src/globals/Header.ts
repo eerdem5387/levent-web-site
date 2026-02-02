@@ -1,6 +1,6 @@
 import type { GlobalConfig } from 'payload'
 
-export const Header: GlobalConfig = {
+const Header: GlobalConfig = {
   slug: 'header',
   label: 'Üst Menü (Header)',
   access: {
@@ -29,3 +29,5 @@ export const Header: GlobalConfig = {
     },
   ],
 }
+export { Header }
+export default Header

@@ -1,7 +1,7 @@
 import type { CollectionConfig } from 'payload'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 
-export const Posts: CollectionConfig = {
+const Posts: CollectionConfig = {
   slug: 'posts',
   access: {
     read: () => true,
@@ -60,3 +60,5 @@ export const Posts: CollectionConfig = {
   ],
   defaultSort: '-publishedAt',
 }
+export { Posts }
+export default Posts

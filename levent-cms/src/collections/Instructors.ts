@@ -10,7 +10,7 @@ const CATEGORIES = [
   { label: 'Kültür Branşları', value: 'kultur' },
 ]
 
-export const Instructors: CollectionConfig = {
+const Instructors: CollectionConfig = {
   slug: 'instructors',
   access: {
     read: () => true,
@@ -59,3 +59,5 @@ export const Instructors: CollectionConfig = {
     },
   ],
 }
+export { Instructors }
+export default Instructors

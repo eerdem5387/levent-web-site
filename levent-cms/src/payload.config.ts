@@ -11,14 +11,14 @@ import { postgresAdapter } from '@payloadcms/db-postgres'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { buildConfig } from 'payload'
 
-import { Users } from './collections/Users'
-import { Media } from './collections/Media'
-import { Pages } from './collections/Pages'
-import { Posts } from './collections/Posts'
-import { Forms } from './collections/Forms'
-import { Instructors } from './collections/Instructors'
-import { Header } from './globals/Header'
-import { Footer } from './globals/Footer'
+import Users from './collections/Users'
+import Media from './collections/Media'
+import Pages from './collections/Pages'
+import Posts from './collections/Posts'
+import Forms from './collections/Forms'
+import Instructors from './collections/Instructors'
+import Header from './globals/Header'
+import Footer from './globals/Footer'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
