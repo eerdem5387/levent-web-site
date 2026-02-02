@@ -200,8 +200,8 @@ export default buildConfig({
         pool: {
           connectionString: databaseUrl ?? '',
         },
-        // Vercel'de tablolar yoksa ilk istekte şemayı oluşturur. Tablolar oluştuktan sonra false yapıp migration kullanın.
-        push: isVercel,
+        // Vercel'de veya PUSH_SCHEMA=1 ile yerelde Postgres'e şemayı otomatik oluşturur.
+        push: isVercel || process.env.PUSH_SCHEMA === '1',
       })
     : sqliteAdapter({
         client: {

@@ -2,14 +2,16 @@
 
 ## Production’da tablolar yoksa (Sunucu hatası / Failed query)
 
-Vercel’de **"Failed query"** veya **"header" tablosu bulunamadı** benzeri hata alıyorsanız, Neon’daki veritabanında tablolar henüz oluşturulmamıştır. Migration’ı **bir kez** production DB’ye uygulayın:
+Vercel’de **"Failed query"** veya **"header" tablosu bulunamadı** benzeri hata alıyorsanız, Neon’daki veritabanında tablolar henüz oluşturulmamıştır. En pratik yol: **şemayı push ile oluşturmak** (migration çalıştırmaya gerek yok):
 
 ```bash
-# Neon’daki production DATABASE_URL’i kullanın (Vercel env’deki ile aynı)
-DATABASE_URL="postgresql://..." npm run migrate:run
+# Neon production DATABASE_URL ile (Vercel’deki ile aynı)
+PUSH_SCHEMA=1 DATABASE_URL="postgresql://..." npm run dev
 ```
 
-Bu komut `src/migrations/` altındaki migration’ları çalıştırır ve `header`, `header_nav_links`, `pages`, `posts` vb. tabloları oluşturur. Sonrasında site çalışır.
+Tarayıcıda **http://localhost:3000** açın; ilk istekte Payload Postgres’e tüm tabloları yazar. Sonra `Ctrl+C` ile dev’i durdurun. Artık Vercel’deki site de aynı DB’yi kullandığı için çalışır.
+
+(Not: Mevcut migration dosyası SQLite için üretildiği ve CLI’de ESM/require uyumsuzluğu olduğu için `npm run migrate` yerine push yöntemi kullanıyoruz.)
 
 ## Migration oluşturma (yeni şema değişikliği için)
 
