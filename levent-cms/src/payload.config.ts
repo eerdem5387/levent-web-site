@@ -20,7 +20,15 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 const databaseUrl = process.env.DATABASE_URL
-const usePostgres = databaseUrl?.startsWith('postgres')
+const isVercel = process.env.VERCEL === '1'
+// Vercel'de SQLite çalışmaz; mutlaka PostgreSQL kullan
+const usePostgres = isVercel ? !!databaseUrl : databaseUrl?.startsWith('postgres')
+
+if (isVercel && !databaseUrl?.startsWith('postgres')) {
+  throw new Error(
+    'Vercel ortamında DATABASE_URL (PostgreSQL) zorunludur. Project Settings → Environment Variables → DATABASE_URL ekleyin.',
+  )
+}
 
 export default buildConfig({
   admin: {
@@ -42,7 +50,7 @@ export default buildConfig({
   db: usePostgres
     ? postgresAdapter({
         pool: {
-          connectionString: databaseUrl,
+          connectionString: databaseUrl!,
         },
       })
     : sqliteAdapter({
