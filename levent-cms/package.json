@@ -10,6 +10,7 @@
     "lint": "eslint",
     "payload": "payload",
     "migrate": "payload migrate",
+    "migrate:run": "PAYLOAD_MIGRATING=true NODE_OPTIONS='--import tsx/esm' payload migrate",
     "migrate:create": "PAYLOAD_MIGRATING=true NODE_OPTIONS='--import tsx/esm' payload migrate:create"
   },
   "dependencies": {

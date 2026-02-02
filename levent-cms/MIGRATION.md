@@ -1,20 +1,31 @@
 # Payload migration (Postgres)
 
-## Migration oluşturma
+## Production’da tablolar yoksa (Sunucu hatası / Failed query)
 
-Yerelde migration oluşturmak için:
+Vercel’de **"Failed query"** veya **"header" tablosu bulunamadı** benzeri hata alıyorsanız, Neon’daki veritabanında tablolar henüz oluşturulmamıştır. Migration’ı **bir kez** production DB’ye uygulayın:
+
+```bash
+# Neon’daki production DATABASE_URL’i kullanın (Vercel env’deki ile aynı)
+DATABASE_URL="postgresql://..." npm run migrate:run
+```
+
+Bu komut `src/migrations/` altındaki migration’ları çalıştırır ve `header`, `header_nav_links`, `pages`, `posts` vb. tabloları oluşturur. Sonrasında site çalışır.
+
+## Migration oluşturma (yeni şema değişikliği için)
+
+Yerelde yeni migration dosyası oluşturmak için:
 
 ```bash
 # .env veya ortamda DATABASE_URL (Postgres) tanımlı olsun
 npm run migrate:create -- --force-accept-warning
 ```
 
-Script otomatik olarak `PAYLOAD_MIGRATING=true` ve `NODE_OPTIONS='--import tsx/esm'` kullanır; migration sırasında lexical/Pages/Posts yerine minimal şema kullanılır (require + ESM uyumu için).
+Script otomatik olarak `PAYLOAD_MIGRATING=true` ve `NODE_OPTIONS='--import tsx/esm'` kullanır.
 
-## Vercel’de şema
+## Vercel ortam değişkenleri
 
-Projede Vercel için **`push: true`** açık; ilk istekte Payload şemayı veritabanında oluşturur. Yani:
+1. **DATABASE_URL** – Neon Postgres bağlantı URL’i  
+2. **PAYLOAD_SECRET** – Gizli anahtar  
+3. **BLOB_READ_WRITE_TOKEN** – (Medya için) Vercel Blob token  
 
-1. **DATABASE_URL**, **PAYLOAD_SECRET**, **BLOB_READ_WRITE_TOKEN** Vercel ortam değişkenlerinde tanımlı olsun.
-2. Deploy’dan sonra site veya admin’e bir istek atın; tablolar otomatik oluşur.
-3. İsterseniz build’e `npm run migrate && next build` ekleyerek oluşan migration’ları da çalıştırabilirsiniz.
+Migration’ı yukarıdaki gibi bir kez çalıştırdıktan sonra deploy’lar normal şekilde çalışır.
